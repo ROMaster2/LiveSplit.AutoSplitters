@@ -26,7 +26,6 @@ isLoading
         return false;
     if (current.victorySplash == 268 && old.victorySplash != 268)
         return true;
-    if (current.victorySplash > 0 && old.victorySplash > 0 && current.menuTransistion == 250 && old.menuTransistion == 0 && current.menuAssist == 255 && old.menuAssist == 0)
+    if (current.victorySplash > 0 && old.victorySplash > 0 && current.menuTransistion == 200 && old.menuTransistion == 250 && current.menuAssist == 255 && old.menuAssist == 255)
         return true;
-	return;
 }
