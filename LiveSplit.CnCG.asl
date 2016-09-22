@@ -26,6 +26,7 @@ isLoading
         return false;
     if (current.victorySplash == 268 && old.victorySplash != 268)
         return true;
-	if (current.menuTransistion == 250)
+	if (current.victorySplash > 0 && current.menuTransistion == 250 && current.menuAssist == 255)
 		return true;
+		return;
 }
