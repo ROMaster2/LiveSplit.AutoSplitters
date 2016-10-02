@@ -1,16 +1,16 @@
 state("Project64")
 {
-    int inGameTimeF1 : "Project64.exe", 0x1002FC, 0x207704;
-    int inGameTimeF2 : "Project64.exe", 0x1002FC, 0x207774;
-    int inGameTimeF3 : "Project64.exe", 0x1002FC, 0x2077E4;
-    int inGameTimeF4 : "Project64.exe", 0x1002FC, 0x207854;
-    int inGameTimeUpdater : "Project64.exe", 0x1002FC, 0x370014;
-    byte fileSelected : "Project64.exe", 0x1002FC, 0x32DDF6; //This'll be added later
+    int inGameTimeF1 : "Project64.exe", 0xD6A1C, 0x207704;
+    int inGameTimeF2 : "Project64.exe", 0xD6A1C, 0x207774;
+    int inGameTimeF3 : "Project64.exe", 0xD6A1C, 0x2077E4;
+    int inGameTimeF4 : "Project64.exe", 0xD6A1C, 0x207854;
+    int inGameTimeUpdater : "Project64.exe", 0xD6A1C, 0x370014;
+    byte fileSelected : "Project64.exe", 0xD6A1C, 0x32DDF6;
 }
 
 start
 {
-    return (current.fileSelected == 1 && old.fileSelected == 0);
+    return (current.fileSelected == 1 && old.fileSelected == 1 && current.inGameTimeUpdater == 0); //Will improve
 }
 
 reset
