@@ -36,8 +36,6 @@ init
 			version = "1.6";
 			break;
 		case "1.7":
-			version = "1.7";
-			break;
 		case "1.7.0.55":
 			version = "1.7";
 			break;
