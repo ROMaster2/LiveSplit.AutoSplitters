@@ -30,6 +30,7 @@ state("Project64", "1.7")
 
 init
 {
+    refreshRate = 30;
 	switch (modules.First().FileVersionInfo.FileVersion)	
 	{
 		case "1.6":
@@ -68,4 +69,6 @@ gameTime
     return TimeSpan.FromMilliseconds((current.inGameTimeF3 + current.inGameTimeUpdater)*1000/30);
     if (current.fileSelected == 4)
     return TimeSpan.FromMilliseconds((current.inGameTimeF4 + current.inGameTimeUpdater)*1000/30);
+    if (current.fileSelected < 2)
+    return TimeSpan.FromMilliseconds(0);
 }
