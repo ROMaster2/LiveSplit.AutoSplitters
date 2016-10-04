@@ -237,7 +237,8 @@ reset
 
 split
 {
-    return (current.level == 25 || (current.level == 16 && old.level == 35)); //GTA start and end of game
+//    return (current.level == 25 || (current.level == 16 && old.level == 35)); //GTA start and end of game
+    return (current.level == 25); //end of game
 }
 
 isLoading
