@@ -228,7 +228,7 @@ init
 
 start
 {
-    return (current.level == 1); //Will improve
+    return (current.fileSelected == 1 && current.inGameTimeUpdater == 0); //Will improve
 }
 
 reset
