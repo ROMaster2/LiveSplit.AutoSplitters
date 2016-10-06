@@ -140,7 +140,7 @@ state("Project64", "1.7")
     byte world15F4 : "Project64.exe", 0x1002FC, 0x207869;
 }
 
-init
+init //Check which version of Project64 is being used. Will probably need to add more.
 {
     refreshRate = 30;
 	switch (modules.First().FileVersionInfo.FileVersion)	
@@ -158,18 +158,18 @@ init
 	}
 }
 
-start
+start //Starts when touching a file door.
 {
 //    return (current.level == 1);
 //    return (current.fileSelected == 1 && current.inGameTimeUpdater == 0);
     return (current.level == 35 && old.inGameTimeUpdater > current.inGameTimeUpdater);
 }
 
-reset
+reset //It can reset on resetting PJ64, but I need to know if there's any situation where reseting is viable. I highly doubt it.
 {
 }
 
-split
+split //Auto-splits when a level has all 7 stars. Doesn't auto-split anywhere else yet.
 {
     if (current.fileSelected == 1)
     return (current.level == 25 || (current.level == 16 && old.level == 9 && (current.world01F1 == 255 || current.world01F1 == 127)) || (current.level == 16 && old.level == 24 && (current.world02F1 == 255 || current.world02F1 == 127)) || (current.level == 16 && old.level == 12 && (current.world03F1 == 255 || current.world03F1 == 127)) || (current.level == 16 && old.level == 5 && (current.world04F1 == 255 || current.world04F1 == 127)) || (current.level == 16 && old.level == 4 && (current.world05F1 == 255 || current.world05F1 == 127)) || (current.level == 6 && old.level == 7 && (current.world06F1 == 255 || current.world06F1 == 127)) || (current.level == 6 && old.level == 22 && (current.world07F1 == 255 || current.world07F1 == 127)) || (current.level == 6 && old.level == 8 && (current.world08F1 == 255 || current.world08F1 == 127)) || (current.level == 6 && old.level == 23 && (current.world09F1 == 255 || current.world09F1 == 127)) || (current.level == 6 && old.level == 10 && (current.world10F1 == 255 || current.world10F1 == 127)) || (current.level == 26 && old.level == 11 && (current.world11F1 == 255 || current.world11F1 == 127)) || (current.level == 26 && old.level == 36 && (current.world12F1 == 255 || current.world12F1 == 127)) || (current.level == 26 && old.level == 13 && (current.world13F1 == 255 || current.world13F1 == 127)) || (current.level == 26 && old.level == 14 && (current.world14F1 == 255 || current.world14F1 == 127)) || (current.level == 26 && old.level == 15 && (current.world15F1 == 255 || current.world15F1 == 127))); 
@@ -181,12 +181,12 @@ split
     return (current.level == 25 || (current.level == 16 && old.level == 9 && (current.world01F4 == 255 || current.world01F4 == 127)) || (current.level == 16 && old.level == 24 && (current.world02F4 == 255 || current.world02F4 == 127)) || (current.level == 16 && old.level == 12 && (current.world03F4 == 255 || current.world03F4 == 127)) || (current.level == 16 && old.level == 5 && (current.world04F4 == 255 || current.world04F4 == 127)) || (current.level == 16 && old.level == 4 && (current.world05F4 == 255 || current.world05F4 == 127)) || (current.level == 6 && old.level == 7 && (current.world06F4 == 255 || current.world06F4 == 127)) || (current.level == 6 && old.level == 22 && (current.world07F4 == 255 || current.world07F4 == 127)) || (current.level == 6 && old.level == 8 && (current.world08F4 == 255 || current.world08F4 == 127)) || (current.level == 6 && old.level == 23 && (current.world09F4 == 255 || current.world09F4 == 127)) || (current.level == 6 && old.level == 10 && (current.world10F4 == 255 || current.world10F4 == 127)) || (current.level == 26 && old.level == 11 && (current.world11F4 == 255 || current.world11F4 == 127)) || (current.level == 26 && old.level == 36 && (current.world12F4 == 255 || current.world12F4 == 127)) || (current.level == 26 && old.level == 13 && (current.world13F4 == 255 || current.world13F4 == 127)) || (current.level == 26 && old.level == 14 && (current.world14F4 == 255 || current.world14F4 == 127)) || (current.level == 26 && old.level == 15 && (current.world15F4 == 255 || current.world15F4 == 127))); 
 }
 
-isLoading
+isLoading //This disables LiveSplit's internal timer for game time.
 {
     return true;
 }
 
-gameTime
+gameTime //Grabs game time manually. Accurate to the frame.
 {
     if (current.fileSelected == 1)
     return TimeSpan.FromMilliseconds((current.inGameTimeF1 + current.inGameTimeUpdater)*1000/30);
