@@ -162,7 +162,7 @@ start
 {
 //    return (current.level == 1);
 //    return (current.fileSelected == 1 && current.inGameTimeUpdater == 0);
-    return (current.level == 16 && current.inGameTimeUpdater == 0 && old.inGameTimeUpdater > 0);
+    return (current.level == 35 && old.inGameTimeUpdater > current.inGameTimeUpdater);
 }
 
 reset
