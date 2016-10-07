@@ -83,6 +83,21 @@ init
             version = "1.6 130 Star";
             break;
 	}
+    vars.gameOverTime = 0;
+}
+
+update //Saves game time lost from game over
+{
+    if (current.level == 1)
+        vars.gameOverTime = 0; //Resets value on reset
+    if (current.fileSelected == 1 && current.file1IGT < old.file1IGT)
+        vars.gameOverTime = old.file1IGT + current.inGameTimeUpdater - current.file1IGT + vars.gameOverTime;
+    if (current.fileSelected == 2 && current.file2IGT < old.file2IGT)
+        vars.gameOverTime = old.file2IGT + current.inGameTimeUpdater - current.file2IGT + vars.gameOverTime;
+    if (current.fileSelected == 3 && current.file3IGT < old.file3IGT)
+        vars.gameOverTime = old.file3IGT + current.inGameTimeUpdater - current.file3IGT + vars.gameOverTime;
+    if (current.fileSelected == 4 && current.file4IGT < old.file4IGT)
+        vars.gameOverTime = old.file4IGT + current.inGameTimeUpdater - current.file4IGT + vars.gameOverTime;
 }
 
 start //Starts when touching a file door.
@@ -93,7 +108,7 @@ start //Starts when touching a file door.
 reset //Resets on...reset.
 {
     if (version == "1.6 Any%" || version == "1.7 Any%")
-    return current.level == 1;
+        return current.level == 1;
 }
 
 split //Micro-splits
@@ -118,9 +133,9 @@ split //Micro-splits
         );
     if (version == "1.6 130 Star" || version == "1.7 130 Star") {
         if (current.fileSelected == 1)
-        return (current.level == 25 || (current.level == 16 && old.level == 9 && ((current.file1Stars[7]|0x80) == 255)) || (current.level == 16 && old.level == 24 && ((current.file1Stars[6]|0x80) == 255)) || (current.level == 16 && old.level == 12 && ((current.file1Stars[5]|0x80) == 255)) || (current.level == 16 && old.level == 5 && ((current.file1Stars[4]|0x80) == 255)) || (current.level == 16 && old.level == 4 && ((current.file1Stars[11]|0x80) == 255)) || (current.level == 6 && old.level == 7 && ((current.file1Stars[10]|0x80) == 255)) || (current.level == 6 && old.level == 22 && ((current.file1Stars[9]|0x80) == 255)) || (current.level == 6 && old.level == 8 && ((current.file1Stars[8]|0x80) == 255)) || (current.level == 6 && old.level == 23 && ((current.file1Stars[15]|0x80) == 255)) || (current.level == 6 && old.level == 10 && ((current.file1Stars[14]|0x80) == 255)) || (current.level == 26 && old.level == 11 && ((current.file1Stars[13]|0x80) == 255)) || (current.level == 26 && old.level == 36 && ((current.file1Stars[12]|0x80) == 255)) || (current.level == 26 && old.level == 13 && ((current.file1Stars[19]|0x80) == 255)) || (current.level == 26 && old.level == 14 && ((current.file1Stars[18]|0x80) == 255)) || (current.level == 26 && old.level == 15 && ((current.file1Stars[17]|0x80) == 255)));
+            return (current.level == 25 || (current.level == 16 && old.level == 9 && ((current.file1Stars[7]|0x80) == 255)) || (current.level == 16 && old.level == 24 && ((current.file1Stars[6]|0x80) == 255)) || (current.level == 16 && old.level == 12 && ((current.file1Stars[5]|0x80) == 255)) || (current.level == 16 && old.level == 5 && ((current.file1Stars[4]|0x80) == 255)) || (current.level == 16 && old.level == 4 && ((current.file1Stars[11]|0x80) == 255)) || (current.level == 6 && old.level == 7 && ((current.file1Stars[10]|0x80) == 255)) || (current.level == 6 && old.level == 22 && ((current.file1Stars[9]|0x80) == 255)) || (current.level == 6 && old.level == 8 && ((current.file1Stars[8]|0x80) == 255)) || (current.level == 6 && old.level == 23 && ((current.file1Stars[15]|0x80) == 255)) || (current.level == 6 && old.level == 10 && ((current.file1Stars[14]|0x80) == 255)) || (current.level == 26 && old.level == 11 && ((current.file1Stars[13]|0x80) == 255)) || (current.level == 26 && old.level == 36 && ((current.file1Stars[12]|0x80) == 255)) || (current.level == 26 && old.level == 13 && ((current.file1Stars[19]|0x80) == 255)) || (current.level == 26 && old.level == 14 && ((current.file1Stars[18]|0x80) == 255)) || (current.level == 26 && old.level == 15 && ((current.file1Stars[17]|0x80) == 255)));
         if (current.fileSelected == 2)
-        return (current.level == 25 || (current.level == 16 && old.level == 9 && ((current.file2Stars[7]|0x80) == 255)) || (current.level == 16 && old.level == 24 && ((current.file2Stars[6]|0x80) == 255)) || (current.level == 16 && old.level == 12 && ((current.file2Stars[5]|0x80) == 255)) || (current.level == 16 && old.level == 5 && ((current.file2Stars[4]|0x80) == 255)) || (current.level == 16 && old.level == 4 && ((current.file2Stars[11]|0x80) == 255)) || (current.level == 6 && old.level == 7 && ((current.file2Stars[10]|0x80) == 255)) || (current.level == 6 && old.level == 22 && ((current.file2Stars[9]|0x80) == 255)) || (current.level == 6 && old.level == 8 && ((current.file2Stars[8]|0x80) == 255)) || (current.level == 6 && old.level == 23 && ((current.file2Stars[15]|0x80) == 255)) || (current.level == 6 && old.level == 10 && ((current.file2Stars[14]|0x80) == 255)) || (current.level == 26 && old.level == 11 && ((current.file2Stars[13]|0x80) == 255)) || (current.level == 26 && old.level == 36 && ((current.file2Stars[12]|0x80) == 255)) || (current.level == 26 && old.level == 13 && ((current.file2Stars[19]|0x80) == 255)) || (current.level == 26 && old.level == 14 && ((current.file2Stars[18]|0x80) == 255)) || (current.level == 26 && old.level == 15 && ((current.file2Stars[17]|0x80) == 255)));
+            return (current.level == 25 || (current.level == 16 && old.level == 9 && ((current.file2Stars[7]|0x80) == 255)) || (current.level == 16 && old.level == 24 && ((current.file2Stars[6]|0x80) == 255)) || (current.level == 16 && old.level == 12 && ((current.file2Stars[5]|0x80) == 255)) || (current.level == 16 && old.level == 5 && ((current.file2Stars[4]|0x80) == 255)) || (current.level == 16 && old.level == 4 && ((current.file2Stars[11]|0x80) == 255)) || (current.level == 6 && old.level == 7 && ((current.file2Stars[10]|0x80) == 255)) || (current.level == 6 && old.level == 22 && ((current.file2Stars[9]|0x80) == 255)) || (current.level == 6 && old.level == 8 && ((current.file2Stars[8]|0x80) == 255)) || (current.level == 6 && old.level == 23 && ((current.file2Stars[15]|0x80) == 255)) || (current.level == 6 && old.level == 10 && ((current.file2Stars[14]|0x80) == 255)) || (current.level == 26 && old.level == 11 && ((current.file2Stars[13]|0x80) == 255)) || (current.level == 26 && old.level == 36 && ((current.file2Stars[12]|0x80) == 255)) || (current.level == 26 && old.level == 13 && ((current.file2Stars[19]|0x80) == 255)) || (current.level == 26 && old.level == 14 && ((current.file2Stars[18]|0x80) == 255)) || (current.level == 26 && old.level == 15 && ((current.file2Stars[17]|0x80) == 255)));
         if (current.fileSelected == 3)
         return (current.level == 25 || (current.level == 16 && old.level == 9 && ((current.file3Stars[7]|0x80) == 255)) || (current.level == 16 && old.level == 24 && ((current.file3Stars[6]|0x80) == 255)) || (current.level == 16 && old.level == 12 && ((current.file3Stars[5]|0x80) == 255)) || (current.level == 16 && old.level == 5 && ((current.file3Stars[4]|0x80) == 255)) || (current.level == 16 && old.level == 4 && ((current.file3Stars[11]|0x80) == 255)) || (current.level == 6 && old.level == 7 && ((current.file3Stars[10]|0x80) == 255)) || (current.level == 6 && old.level == 22 && ((current.file3Stars[9]|0x80) == 255)) || (current.level == 6 && old.level == 8 && ((current.file3Stars[8]|0x80) == 255)) || (current.level == 6 && old.level == 23 && ((current.file3Stars[15]|0x80) == 255)) || (current.level == 6 && old.level == 10 && ((current.file3Stars[14]|0x80) == 255)) || (current.level == 26 && old.level == 11 && ((current.file3Stars[13]|0x80) == 255)) || (current.level == 26 && old.level == 36 && ((current.file3Stars[12]|0x80) == 255)) || (current.level == 26 && old.level == 13 && ((current.file3Stars[19]|0x80) == 255)) || (current.level == 26 && old.level == 14 && ((current.file3Stars[18]|0x80) == 255)) || (current.level == 26 && old.level == 15 && ((current.file3Stars[17]|0x80) == 255)));
         if (current.fileSelected == 4)
@@ -136,11 +151,11 @@ isLoading //This disables LiveSplit's internal timer for game time.
 gameTime //Grabs game time manually. Accurate to the frame.
 {
     if (current.fileSelected == 1)
-    return TimeSpan.FromMilliseconds((current.file1IGT + current.inGameTimeUpdater)*1000/30);
+        return TimeSpan.FromMilliseconds((current.file1IGT + current.inGameTimeUpdater + vars.gameOverTime)*1000/30);
     if (current.fileSelected == 2)
-    return TimeSpan.FromMilliseconds((current.file2IGT + current.inGameTimeUpdater)*1000/30);
+        return TimeSpan.FromMilliseconds((current.file2IGT + current.inGameTimeUpdater + vars.gameOverTime)*1000/30);
     if (current.fileSelected == 3)
-    return TimeSpan.FromMilliseconds((current.file3IGT + current.inGameTimeUpdater)*1000/30);
+        return TimeSpan.FromMilliseconds((current.file3IGT + current.inGameTimeUpdater + vars.gameOverTime)*1000/30);
     if (current.fileSelected == 4)
-    return TimeSpan.FromMilliseconds((current.file4IGT + current.inGameTimeUpdater)*1000/30);
+        return TimeSpan.FromMilliseconds((current.file4IGT + current.inGameTimeUpdater + vars.gameOverTime)*1000/30);
 }
