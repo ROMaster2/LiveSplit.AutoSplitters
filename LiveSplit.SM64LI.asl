@@ -100,15 +100,15 @@ split //Micro-splits
 {
     if (version == "1.6 Any%" || version == "1.7 Any%")
         return (
-        (current.level == 16 && current.levelArea > old.levelArea) || //Coconut Clip
+//      (current.level == 16 && current.levelArea > old.levelArea) || //Coconut Clip
         (current.level == 17 && old.level == 16 && current.inGameTimeUpdater > 600) || //Into Bowser 1
         (current.level == 17 && current.music == 19 && old.music == 17) || //Bowser's Fiery Castle
         (current.level == 16 && old.level == 30) || //Bowser
-        (current.level == 6 && old.level == 16) || //Out of BFC
+//      (current.level == 6 && old.level == 16) || //Out of BFC
         (current.level == 19 && old.level == 6) || //Cannon Skip (and again)
         (current.level == 19 && current.music == 0 && old.music == 41) || //Shadow Factory
         (current.level == 6 && old.level == 30) || //Shadow Mario
-        (current.level == 26 && old.level == 6) || //TO THE MOOOOON!
+//      (current.level == 26 && old.level == 6) || //TO THE MOOOOON!
         (current.level == 21 && old.level == 26) || //RMC Clip
         (current.level == 21 && current.levelArea > old.levelArea && current.inGameTimeUpdater > 600) || //Rashay's Moon Cellar
         (current.level == 21 && current.music == 33 && old.music == 0) || //Rashay Phase One
