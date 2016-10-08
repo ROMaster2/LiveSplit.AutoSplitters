@@ -61,22 +61,22 @@ init
 	{
         case " Any%":
         case " 0 Star":
+        case " 20 Star":
             version = "1.6 Any%";
             break;
         case "1.7.0.55 Any%":
         case "1.7.0.55 0 Star":
+        case "1.7.0.55 20 Star":
             version = "1.7 Any%";
             break;
         case " 80 Star":
         case " 130 Star":
         case " 130 Star BLJless":
-        case " 20 Star":
             version = "1.6 130 Star";
             break;
         case "1.7.0.55 80 Star":
         case "1.7.0.55 130 Star":
         case "1.7.0.55 130 Star BLJless":
-        case "1.7.0.55 20 Star":
             version = "1.7 130 Star";
             break;
         default:
