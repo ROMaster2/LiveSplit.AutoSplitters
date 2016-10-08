@@ -100,21 +100,21 @@ update //Saves game time lost from game over
     if (current.fileSelected == 4 && current.file4IGT < old.file4IGT)
         vars.gameOverTime = old.file4IGT + current.inGameTimeUpdater - current.file4IGT + vars.gameOverTime;
     if ((version == "1.6 Any%" || version == "1.7 Any%") && (
-    (current.level == 16 && current.levelArea > old.levelArea && vars.flag == 0) || //Coconut Clip
+//    (current.level == 16 && current.levelArea > old.levelArea && vars.flag == 0) || //Coconut Clip
     (current.level == 17 && old.level == 16 && vars.flag == 2) || //Into Bowser 1
     (current.level == 17 && current.music == 19 && old.music == 17 && vars.flag == 4) || //Bowser's Fiery Castle
     (current.level == 16 && old.level == 30 && vars.flag == 6) || //Bowser
-    (current.level == 6 && old.level == 16 && vars.flag == 8) ||  //Out of BFC
+//    (current.level == 6 && old.level == 16 && vars.flag == 8) ||  //Out of BFC
     (current.level == 19 && old.level == 6 && vars.flag == 10) ||  //Cannon Skip
     (current.level == 19 && current.music == 0 && old.music == 41 && vars.flag == 12) || //Shadow Factory
     (current.level == 6 && old.level == 30 && vars.flag == 14) || //Shadow Mario
     (current.level == 19 && old.level == 6 && vars.flag == 16) || //Cannon Skip (again)
-    (current.level == 26 && old.level == 6 && vars.flag == 18) || //TO THE MOOOOON!
+//    (current.level == 26 && old.level == 6 && vars.flag == 18) || //TO THE MOOOOON!
     (current.level == 21 && old.level == 26 && vars.flag == 20) || //RMC Clip
     (current.level == 21 && current.levelArea > old.levelArea  && vars.flag == 22) || //Rashay's Moon Cellar
     (current.level == 21 && current.music == 33 && old.music == 0 && vars.flag == 24) || //Rashay Phase One
     (current.level == 21 && current.music == 31 && old.music == 33 && vars.flag == 26) || //Rashay Phase Two
-    (current.level == 21 && current.music == 33 && old.music == 31 && vars.flag == 28) || //Peach
+//    (current.level == 21 && current.music == 33 && old.music == 31 && vars.flag == 28) || //Peach
     vars.flag % 2 != 0))
         vars.flag = vars.flag + 1;
 }
