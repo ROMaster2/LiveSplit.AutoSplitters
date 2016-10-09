@@ -37,6 +37,7 @@ startup
     settings.Add("nostart", true, "Enable auto-start");
     settings.Add("noreset", true, "Enable auto-reset");
     settings.Add("nosplits", true, "Enable auto-splits");
+    settings.Add("noend", true, "Enable auto-splitting the final screen");
     settings.Add("nogot", true, "Retain game time lost from death");
 }
 
@@ -204,7 +205,7 @@ reset
 
 split
 {
-    return (vars.segment % 2 == 1);
+    return (vars.segment % 2 == 1 || (current.level == 25 && settings["noend"]));
 }
 
 isLoading
