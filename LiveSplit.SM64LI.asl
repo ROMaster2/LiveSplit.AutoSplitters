@@ -38,7 +38,7 @@ startup
     settings.Add("noreset", true, "Enable auto-reset");
     settings.Add("nosplits", true, "Enable auto-splits");
     settings.Add("noend", true, "Enable auto-splitting the final screen");
-    settings.Add("nogot", true, "Retain game time lost from death");
+    settings.Add("nogot", true, "Retain game time lost from game over");
 }
 
 init
