@@ -58,27 +58,27 @@ update
 {
     if (vars.segment % 2 == 1) vars.segment += 1;
     if (vars.category == "Any%" || vars.category == "0 Star" || vars.category == "20 Star") {
-        if (vars.segment < 10) {
-            if(vars.segment == 0) vars.segment += (current.level == 16 && current.levelArea > old.levelArea) ? 1 : 0;
-            else if(vars.segment == 2) vars.segment += (current.level == 17 && old.level == 16) ? 1 : 0;
-            else if(vars.segment == 4) vars.segment += (current.level == 17 && current.music == 19 && old.music == 17) ? 1 : 0;
-            else if(vars.segment == 6) vars.segment += (current.level == 16 && old.level == 30) ? 1 : 0;
-            else if(vars.segment == 8) vars.segment += (current.level == 6 && old.level == 16) ? 1 : 0;
+        if (vars.segment < 6) {
+//               if(vars.segment ==  0) vars.segment += (current.level == 16 && current.levelArea > old.levelArea) ? 1 : 0;
+                 if(vars.segment ==  0) vars.segment += (current.level == 17 && old.level == 16) ? 1 : 0;
+            else if(vars.segment ==  2) vars.segment += (current.level == 17 && current.music == 19 && old.music == 17) ? 1 : 0;
+            else if(vars.segment ==  4) vars.segment += (current.level == 16 && old.level == 30) ? 1 : 0;
+//          else if(vars.segment ==  8) vars.segment += (current.level ==  6 && old.level == 16) ? 1 : 0;
         }
-        else if (vars.segment < 20) {
-            if(vars.segment == 10) vars.segment += (current.level == 19 && old.level == 6) ? 1 : 0;
-            else if(vars.segment == 12) vars.segment += (current.level == 19 && current.music == 0 && old.music == 41) ? 1 : 0;
-            else if(vars.segment == 14) vars.segment += (current.level == 6 && old.level == 30) ? 1 : 0;
-            else if(vars.segment == 16) vars.segment += (current.level == 19 && old.level == 6) ? 1 : 0;
-            else if(vars.segment == 18) vars.segment += (current.level == 26 && old.level == 6) ? 1 : 0;
+        else if (vars.segment < 12) {
+                 if(vars.segment ==  6) vars.segment += (current.level == 19 && old.level ==  6) ? 1 : 0;
+            else if(vars.segment ==  8) vars.segment += (current.level == 19 && current.music == 0 && old.music == 41) ? 1 : 0;
+            else if(vars.segment == 10) vars.segment += (current.level ==  6 && old.level == 30) ? 1 : 0;
+//          else if(vars.segment == 16) vars.segment += (current.level == 19 && old.level ==  6) ? 1 : 0;
+//          else if(vars.segment == 18) vars.segment += (current.level == 26 && old.level ==  6) ? 1 : 0;
         }
         else {
-            if(vars.segment == 20) vars.segment += (current.level == 21 && old.level == 26) ? 1 : 0;
-            else if(vars.segment == 22) vars.segment += (current.level == 21 && current.levelArea > old.levelArea) ? 1 : 0;
-            else if(vars.segment == 24) vars.segment += (current.level == 21 && current.music == 33 && old.music == 0) ? 1 : 0;
-            else if(vars.segment == 26) vars.segment += (current.level == 21 && current.music == 31 && old.music == 33) ? 1 : 0;
-            else if(vars.segment == 28) vars.segment += (current.level == 21 && current.music == 33 && old.music == 31) ? 1 : 0;
-            else if(vars.segment == 30) vars.segment += (current.level == 25) ? 1 : 0;
+                 if(vars.segment == 12) vars.segment += (current.level == 21 && old.level == 26) ? 1 : 0;
+            else if(vars.segment == 14) vars.segment += (current.level == 21 && current.levelArea > old.levelArea) ? 1 : 0;
+            else if(vars.segment == 16) vars.segment += (current.level == 21 && current.music == 33 && old.music ==  0) ? 1 : 0;
+            else if(vars.segment == 18) vars.segment += (current.level == 21 && current.music == 31 && old.music == 33) ? 1 : 0;
+//          else if(vars.segment == 28) vars.segment += (current.level == 21 && current.music == 33 && old.music == 31) ? 1 : 0;
+            else if(vars.segment == 20) vars.segment += (current.level == 25) ? 1 : 0;
         }
     }
     //The following is VERY long because switch doesn't work inside update.
