@@ -183,7 +183,7 @@ update
 		}
 	    }
         }
-    if (current.fileSelected == 2 && current.file2IGT < old.file2IGT)
+    if (current.fileSelected == 2 && current.file2IGT < old.file2IGT && settings["nogot"])
         vars.gameOverTime = old.file2IGT + current.inGameTimeUpdater - current.file2IGT + vars.gameOverTime;
     else if (current.fileSelected == 3 && current.file3IGT < old.file3IGT)
         vars.gameOverTime = old.file3IGT + current.inGameTimeUpdater - current.file3IGT + vars.gameOverTime;
@@ -191,6 +191,9 @@ update
         vars.gameOverTime = old.file1IGT + current.inGameTimeUpdater - current.file1IGT + vars.gameOverTime;
     else if (current.fileSelected == 4 && current.file4IGT < old.file4IGT)
         vars.gameOverTime = old.file4IGT + current.inGameTimeUpdater - current.file4IGT + vars.gameOverTime;
+    //Will need to fix this betteer
+    if (current.level == 1)
+        vars.gameOverTime = 0;
 }
 
 start
