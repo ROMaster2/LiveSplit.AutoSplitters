@@ -9,10 +9,6 @@ state("Project64", "1.6")
     byte level : "Project64.exe", 0xD6A1C, 0x32DDFA;
     byte levelArea : "Project64.exe", 0xD6A1C, 0x33B249;
     byte music : "Project64.exe", 0xD6A1C, 0x22261E;
-    byte29 file1Stars : "Project64.exe", 0xD6A1C, 0x207708;
-    byte29 file2Stars : "Project64.exe", 0xD6A1C, 0x207778;
-    byte29 file3Stars : "Project64.exe", 0xD6A1C, 0x2077e8;
-    byte29 file4Stars : "Project64.exe", 0xD6A1C, 0x207858;
 }
 
 state("Project64", "1.7")
@@ -26,17 +22,13 @@ state("Project64", "1.7")
     byte level : "Project64.exe", 0x1002FC, 0x32DDFA;
     byte levelArea : "Project64.exe", 0x1002FC, 0x33B249;
     byte music : "Project64.exe", 0x1002FC, 0x22261E;
-    byte29 file1Stars : "Project64.exe", 0x1002FC, 0x207708;
-    byte29 file2Stars : "Project64.exe", 0x1002FC, 0x207778;
-    byte29 file3Stars : "Project64.exe", 0x1002FC, 0x2077e8;
-    byte29 file4Stars : "Project64.exe", 0x1002FC, 0x207858;
 }
 
 startup
 {
     settings.Add("nostart", true, "Enable auto-start");
     settings.Add("noreset", true, "Enable auto-reset");
-    settings.Add("nosplits", true, "Enable auto-splits");
+    //settings.Add("nosplits", true, "Enable auto-splits"); Fuck it, no one will use them
     settings.Add("noend", true, "Enable auto-splitting the final screen");
     settings.Add("nogot", true, "Retain game time lost from game over");
 }
@@ -48,6 +40,61 @@ init
 	{
         case "1.7.0.55":
             version = "1.7";
+            break;
+        default:
+            version = "1.6";
+            break;
+	}
+    vars.gameOverTime = 0;
+}
+
+update
+{
+    if (current.fileSelected == 2 && current.file2IGT < old.file2IGT && settings["nogot"])
+        vars.gameOverTime = old.file2IGT + current.inGameTimeUpdater - current.file2IGT + vars.gameOverTime;
+    else if (current.fileSelected == 3 && current.file3IGT < old.file3IGT)
+        vars.gameOverTime = old.file3IGT + current.inGameTimeUpdater - current.file3IGT + vars.gameOverTime;
+    else if (current.fileSelected == 1 && current.file1IGT < old.file1IGT)
+        vars.gameOverTime = old.file1IGT + current.inGameTimeUpdater - current.file1IGT + vars.gameOverTime;
+    else if (current.fileSelected == 4 && current.file4IGT < old.file4IGT)
+        vars.gameOverTime = old.file4IGT + current.inGameTimeUpdater - current.file4IGT + vars.gameOverTime;
+    //Will need to fix this betteer
+    if (current.level == 1)
+        vars.gameOverTime = 0;
+}
+
+start
+{
+    return (settings["nostart"] && current.level == 35 && old.inGameTimeUpdater > current.inGameTimeUpdater);
+}
+
+reset
+{
+    return (current.level == 1 && settings["noreset"]);
+}
+
+split
+{
+    return (current.level == 25 && settings["noend"]);
+}
+
+isLoading
+{
+    return true;
+}
+
+gameTime
+{
+    if (current.fileSelected == 2)
+        return TimeSpan.FromMilliseconds((current.file2IGT + current.inGameTimeUpdater + vars.gameOverTime)*1000/30);
+    else if (current.fileSelected == 3)
+        return TimeSpan.FromMilliseconds((current.file3IGT + current.inGameTimeUpdater + vars.gameOverTime)*1000/30);
+    else if (current.fileSelected == 1)
+        return TimeSpan.FromMilliseconds((current.file1IGT + current.inGameTimeUpdater + vars.gameOverTime)*1000/30);
+    else if (current.fileSelected == 4)
+        return TimeSpan.FromMilliseconds((current.file4IGT + current.inGameTimeUpdater + vars.gameOverTime)*1000/30);
+}
+
             break;
         default:
             version = "1.6";
