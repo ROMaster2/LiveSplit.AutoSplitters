@@ -8,7 +8,7 @@ state("YookaLaylee64")
 
 start
 {
-    return (current.starter == 65536 && old.starter > 2);
+    return (current.starter == 65536 && old.starter < 2);
 }
 
 isLoading
