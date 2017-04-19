@@ -29,5 +29,5 @@ start
 isLoading
 {
 //  return (current.isLoad && current.timeThing < 3);
-    return (current.isLoad && listener01 == 1065353216 && listener02 == 0 && listener03 == 0 && listener04 == 1065353216 && listener05 == 0 && listener06 == 0 && listener07 == 0 && listener08 == 3212836864 && listener09 == 3323742884 && listener10 == 3323740545 && listener11 == 1176247849);
+    return (current.isLoad && current.listener01 == 1065353216 && current.listener02 == 0 && current.listener03 == 0 && current.listener04 == 1065353216 && current.listener05 == 0 && current.listener06 == 0 && current.listener07 == 0 && current.listener08 == 3212836864 && current.listener09 == 3323742884 && current.listener10 == 3323740545 && current.listener11 == 1176247849);
 }
