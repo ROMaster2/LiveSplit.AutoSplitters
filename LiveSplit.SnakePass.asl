@@ -8,5 +8,5 @@ gameTime
     if (current.igt == 0)
         return TimeSpan.FromMilliseconds(0);
     else
-        return TimeSpan.FromMilliseconds(Math.Pow(6.8883980017,10^-45)*Math.Exp(Math.Pow(8.4702432194,10^-8)*current.igt)*86400000);
+        return TimeSpan.FromMilliseconds(6.8883980017*Math.Pow(10,-45)*Math.Exp(8.4702432194*Math.Pow(10,-8)*current.igt)*86400000);
 }
