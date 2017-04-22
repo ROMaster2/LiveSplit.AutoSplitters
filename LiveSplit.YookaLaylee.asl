@@ -1,8 +1,7 @@
 state("YookaLaylee64")
 {
-    bool isLoad: "YookaLaylee64.exe", 0x1325088, 0x2EC;
+    bool isLoad: "AkSoundEngine.dll", 0x1A2FB8;
     uint starter: "YookaLaylee64.exe", 0x13218E8, 0x78, 0x10, 0x20, 0x64;
-    uint timeThing: "steamclient64.dll", 0x00C3E508, 0x70, 0xb28, 0x5d8, 0x180, 0x98;
 //  uint slot0gametime : "YookaLaylee64.exe", 0x01298200, 0xA48, 0x5D0, 0x88;
 }
 
@@ -13,5 +12,5 @@ start
 
 isLoading
 {
-   return (current.isLoad && current.timeThing < 3);
+   return !current.isLoad;
 }
