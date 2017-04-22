@@ -5,9 +5,8 @@ state("snakepass")
 
 gameTime
 {
-    if (igt == 0) {
+    if (current.igt == 0)
         return TimeSpan.FromMilliseconds(0);
-    } else {
+    else
         return 6.8883980017*10^-45*Math.Exp(8.4702432194*10^-8*current.igt)*86400000;
-    }        
 }
