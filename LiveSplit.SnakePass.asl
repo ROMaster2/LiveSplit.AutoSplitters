@@ -1,9 +1,13 @@
 state("snakepass")
 {
-    uint testing : 0x25A83FF24E8, 0x58, 0x188, 0x780, 0x700, 0x6D8;
+    uint igt: "SnakePass-Win64-Shipping.exe", 0x0286D7F0, 0x7A8, 0x180, 0x128, 0x560, 0x744;
 }
 
-start
+gameTime
 {
-    return (current.testing != 0 && old.testing == 0);
+    if (igt == 0) {
+        return TimeSpan.FromMilliseconds(0);
+    } else {
+        return 6.8883980017*10^-45*Math.Exp(8.4702432194*10^-8*current.igt)*86400000;
+    }        
 }
