@@ -12,5 +12,5 @@ start
 
 isLoading
 {
-   return current.isLoad < 8;
+   return current.isLoad < 3;
 }
