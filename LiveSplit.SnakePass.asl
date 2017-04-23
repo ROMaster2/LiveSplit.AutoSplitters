@@ -37,5 +37,5 @@ split
 
 start
 {
-    return (current.starter != old.starter); //Unstable
+//    return (current.starter != old.starter); //Unstable
 }
