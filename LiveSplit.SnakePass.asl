@@ -30,5 +30,5 @@ split
 */
 start
 {
-    return (current.starter > 1662 && old.starter == 1662);
+    return (current.starter != 1662 && old.starter == 1662);//May be too sensitive
 }
