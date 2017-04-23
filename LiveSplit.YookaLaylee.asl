@@ -13,5 +13,5 @@ start
 
 isLoading
 {
-   return (!current.isLoad1 && current.isLoad2 < 3);
+   return (current.isLoad1 && current.isLoad2 < 3);
 }
