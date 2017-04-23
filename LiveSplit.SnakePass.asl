@@ -5,7 +5,7 @@ state("SnakePass-Win64-Shipping")
 
 gameTime
 {
-    return TimeSpan.FromSeconds(current.igt);
+    return TimeSpan.FromSeconds(Convert.ToDouble(current.igt));
 }
 
 start
