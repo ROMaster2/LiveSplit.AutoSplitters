@@ -10,6 +10,8 @@ init
 
 update
 {
+    if (timer.CurrentTime.RealTime < TimeSpan.FromSeconds(1.0))
+        vars.totalIGT = 0;
     if (current.igt == 0.0 && old.igt > 0.0)
         vars.totalIGT = vars.totalIGT + Convert.ToDouble(old.igt);
 }
