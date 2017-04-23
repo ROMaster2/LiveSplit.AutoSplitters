@@ -10,11 +10,11 @@ init
 
 update
 {
-    if (current.IGT == 0.0 && old.IGT > 0.0)
-        vars.totalIGT = vars.totalIGT + Convert.ToDouble(old.IGT);
+    if (current.igt == 0.0 && old.igt > 0.0)
+        vars.totalIGT = vars.totalIGT + Convert.ToDouble(old.igt);
 }
 
 gameTime
 {
-    return TimeSpan.FromSeconds(vars.totalIGT + Convert.ToDouble(current.IGT));
+    return TimeSpan.FromSeconds(vars.totalIGT + Convert.ToDouble(current.igt));
 }
