@@ -14,7 +14,7 @@ start
 
 split
 {
-    return (timer.CurrentSplitIndex == (timer.Run.Count - 1) && current.finalHit < -0.09842 && current.finalHit > -0.09843 && current.finalHit == old.finalHit);
+    return (timer.CurrentSplitIndex == (timer.Run.Count - 1) && current.finalHit < -0.09842f && current.finalHit > -0.09843f && current.finalHit == old.finalHit);
 }
 
 isLoading
