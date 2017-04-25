@@ -14,7 +14,7 @@ start
 
 split
 {
-    return (timer.CurrentSplitIndex == (timer.Run.Count - 1) && current.cameraTilt < -0.09842f && current.cameraTilt > -0.09843f && current.cameraTilt == old.cameraTilt);
+    return (timer.CurrentSplitIndex == (timer.Run.Count - 1) && current.cameraTilt == old.cameraTilt && current.cameraTilt < -0.09842f && current.cameraTilt > -0.09843f);
 }
 
 isLoading
