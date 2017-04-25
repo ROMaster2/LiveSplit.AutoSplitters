@@ -19,5 +19,5 @@ split
 
 isLoading
 {
-    return (current.isLoad1 && current.cameraTilt == 0));
+    return (current.isLoad1 && current.cameraTilt == 0);
 }
