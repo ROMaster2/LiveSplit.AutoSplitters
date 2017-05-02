@@ -1,4 +1,4 @@
-state("INK")
+state("INK", "child")
 {
     byte levelID: "INK.exe", 0x59D310;
     float igt: "gameoverlayrenderer.dll", 0x10203C;
@@ -6,6 +6,10 @@ state("INK")
 
 init
 {
+	if (modules.First().ModuleMemorySize == 4163584)
+	{
+		version = "child";
+	}
     vars.igtStart = 0f;
 }
 
@@ -30,10 +34,10 @@ gameTime
     return TimeSpan.FromSeconds(current.igt - vars.igtStart);
 }
 
-//isLoading
-//{
-//    return true;
-//}
+isLoading
+{
+    return true;
+}
 
 reset
 {
