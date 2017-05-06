@@ -19,5 +19,5 @@ split
 
 isLoading
 {
-    return current.isLoad1 ? (current.isLoad2 < 3 || current.cameraTilt == 0f) : (current.isLoad2 < 3 && current.cameraTilt == 0f);
+    return (current.isLoad1 && (current.isLoad2 < 3 || current.cameraTilt == 0f));
 }
