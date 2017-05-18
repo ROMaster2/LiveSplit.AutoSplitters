@@ -6,10 +6,11 @@ state("INK", "child")
 
 init
 {
-	if (modules.First().ModuleMemorySize == 4163584)
-	{
-		version = "child";
-	}
+    refreshRate = 30;
+    if (modules.First().ModuleMemorySize == 4163584)
+    {
+    	version = "child";
+    }
     vars.igtStart = 0f;
 }
 
@@ -29,14 +30,14 @@ split
     return (current.levelID > old.levelID);
 }
 
-gameTime
-{
-    return TimeSpan.FromSeconds(current.igt - vars.igtStart);
-}
+//gameTime
+//{
+//    return TimeSpan.FromSeconds(current.igt - vars.igtStart);
+//}
 
 isLoading
 {
-    return true;
+    return current.igt == old.igt;
 }
 
 reset
