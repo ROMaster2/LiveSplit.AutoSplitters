@@ -25,3 +25,8 @@ isLoading
 {
     return true;
 }
+
+start
+{
+    vars.totalIGT = 0f;
+}
