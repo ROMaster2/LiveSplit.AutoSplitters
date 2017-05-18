@@ -5,10 +5,18 @@ state("SnakePass-Win64-Shipping")
 
 init
 {
-    refreshRate = 20;
+    vars.totalIGT = 0f;
 }
 
-isLoading
+update
 {
-    return current.igt <= old.igt;
+    if (timer.CurrentTime.RealTime < TimeSpan.FromSeconds(1.0))
+        vars.totalIGT = 0f;
+    if (current.igt == 0f && old.igt > 0f)
+        vars.totalIGT = vars.totalIGT + old.igt;
+}
+
+gameTime
+{
+    return TimeSpan.FromSeconds((vars.totalIGT + current.igt) / 1.2f); //change when patched
 }
