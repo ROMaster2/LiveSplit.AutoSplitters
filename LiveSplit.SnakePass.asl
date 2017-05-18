@@ -20,3 +20,8 @@ gameTime
 {
     return TimeSpan.FromSeconds((vars.totalIGT + current.igt) / 1.2f); //change when patched
 }
+
+isLoading
+{
+    return true;
+}
