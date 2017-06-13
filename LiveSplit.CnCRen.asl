@@ -3,22 +3,24 @@ state("Game")
     uint igt : "Game.exe", 0x455ED0;
 }
 
-init
+startup
 {
-    vars.totalIGT = 0;
+    vars.prevPhase = null;
+    vars.loadedTime = 0;
 }
 
 update
 {
-    if (timer.CurrentTime.RealTime < TimeSpan.FromSeconds(10.0))
-        vars.totalIGT = 0;
     if (current.igt == 0 && old.igt > 0)
-        vars.totalIGT = vars.totalIGT + old.igt;
+        vars.loadedTime += old.igt;
+    if (timer.CurrentPhase == TimerPhase.Running && vars.prevPhase == TimerPhase.NotRunning)
+        vars.loadedTime = 0;
+    vars.prevPhase = timer.CurrentPhase;
 }
 
 start
 {
-    return current.igt == 123456789;
+    return current.igt == 0 && old.igt > 0;
 }
 
 reset
@@ -36,5 +38,5 @@ isLoading
 
 gameTime
 {
-    return TimeSpan.FromMilliseconds(vars.totalIGT + current.igt);
+    return TimeSpan.FromMilliseconds(current.igt + vars.loadedTime);
 }
