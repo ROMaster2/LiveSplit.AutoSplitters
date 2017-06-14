@@ -14,6 +14,14 @@ state("generals")
     byte menuAssist : "generals.exe", 0x56B9F0, 0x74, 0x58, 0x3E;
 }
 
+state("game")
+{
+    byte cursorControl : "game.Dat", 0x56D380, 0xA7;
+    ushort victorySplash : "game.Dat", 0x56D38C, 0xF;
+    byte menuTransistion : "game.Dat", 0x56B9F0, 0x74, 0x58, 0x3F;
+    byte menuAssist : "game.Dat", 0x56B9F0, 0x74, 0x58, 0x3E;
+}
+
 start
 {
     return (current.victorySplash > 0 && old.victorySplash > 0 && current.menuTransistion == 250 && old.menuTransistion == 0 && current.menuAssist == 255 && old.menuAssist == 0);
