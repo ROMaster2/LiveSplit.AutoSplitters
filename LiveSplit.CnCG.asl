@@ -16,11 +16,6 @@ state("generals")
     byte map: "generals.exe", 0x53FB1C;
 }
 
-init
-{
-    refreshRate = 60;
-}
-
 start
 {
     return (current.victorySplash > 0 && old.victorySplash > 0 && current.menuTransistion == 250 && old.menuTransistion == 0 && current.menuAssist == 255 && old.menuAssist == 0); //trigger happy
