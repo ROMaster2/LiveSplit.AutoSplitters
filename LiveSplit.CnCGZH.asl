@@ -22,20 +22,7 @@ state("generals")
     byte map: "generals.exe", 0x5F5700;
 }
 
-start
-{
-    return (current.menuTransistion == 256 && old.menuTransistion == 1 && current.map == 1); //trigger happy
-}
-
-split
-{
-    return (current.victorySplash == 1 && old.victorySplash == 0 && current.map > 1);
-}
-
 isLoading
 {
-    if (current.map == 1 || (current.victorySplash == 1 && old.victorySplash == 0 && current.map > 1))
-        return true;
-    if (current.cursorControl == 1 && old.cursorControl == 0)
-        return false;
+    return current.cursorControl == 1;
 }
