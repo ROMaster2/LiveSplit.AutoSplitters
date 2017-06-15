@@ -5,7 +5,12 @@ state("generals")
 
 start
 {
-    return current.cursorControl == 123;
+    return current.cursorControl == 0;
+}
+
+split
+{
+    return current.cursorControl == 0;
 }
 
 isLoading
