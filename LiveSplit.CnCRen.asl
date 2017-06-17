@@ -74,7 +74,7 @@ update
 
 start
 {
-    return (current.menu1 == vars.indexes[0] && current.menu2 == vars.indexes[4] && old.start1 == vars.indexes[7] && current.start1 == vars.indexes[8] && old.start2 == vars.indexes[9] && current.start2 == vars.indexes[10]);
+    return (current.menu1 == vars.indexes[0] && (current.menu2 == vars.indexes[4] || current.menu2 == 6) && old.start1 == vars.indexes[7] && current.start1 == vars.indexes[8] && old.start2 == vars.indexes[9] && current.start2 == vars.indexes[10]);
 }
 
 reset
@@ -82,7 +82,7 @@ reset
     if (timer.CurrentTime.RealTime.Value.TotalMilliseconds > 400) {
         return (current.menu1 == vars.indexes[1] && current.menu2 == vars.indexes[5] && old.menu2 == vars.indexes[6] && current.start1 == vars.indexes[8] && current.start2 == vars.indexes[10]);
     } else {
-        return current.menu2 == vars.indexes[6];
+        return (current.menu2 == vars.indexes[6] || current.menu2 == 4);
     }
 }
 
