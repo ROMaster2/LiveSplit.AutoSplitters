@@ -66,7 +66,7 @@ reset
 
 split
 {
-    return (current.menu1 == 1 && current.menu2 == 3 && old.menu1 == 0 && old.menu2 == 1);
+    return (current.menu1 == 1 && current.menu2 == 3 && (old.menu1 == 0 || old.menu2 == 1));
 }
 
 isLoading
