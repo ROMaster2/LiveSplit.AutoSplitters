@@ -9,7 +9,7 @@ state("Game")
 
 init
 {
-	refreshRate = 20;
+	refreshRate = 30;
     vars.ind = new byte[2] {136, 140};
     switch(modules.First().ModuleMemorySize) {
         case 4952064: //Origins
@@ -31,6 +31,9 @@ startup
     vars.totalIGT = 0;
     vars.storedIGT = 0;
     vars.reloadedTime = 0;
+    vars.splitter = false;
+    vars.menu1help = false;
+    vars.menu2help = false;
 }
 
 update
@@ -48,6 +51,17 @@ update
         vars.reloadedTime = 0;
     }
     vars.prevPhase = timer.CurrentPhase;
+    
+    vars.splitter = false;
+    if (current.menu1 == 1 && old.menu1 == 0)
+        vars.menu1help = true;
+    if (current.menu2 == 3 && old.menu1 == 1);
+        vars.menu2help = true;
+    if (vars.menu1help && vars.menu2help) {
+        vars.splitter = true;
+        vars.menu1help = false;
+        vars.menu2help = false;
+    }
 }
 
 start
@@ -66,7 +80,7 @@ reset
 
 split
 {
-    return (current.menu1 == 1 && current.menu2 == 3 && old.menu1 == 0 && old.menu2 == 1);
+    return vars.splitter;
 }
 
 isLoading
