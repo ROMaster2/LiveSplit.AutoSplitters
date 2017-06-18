@@ -9,7 +9,7 @@ state("Game")
 
 init
 {
-	refreshRate = 30;
+	refreshRate = 20;
     vars.ind = new byte[2] {136, 140};
     switch(modules.First().ModuleMemorySize) {
         case 4952064: //Origins
@@ -66,7 +66,7 @@ reset
 
 split
 {
-    return (current.menu1 == 1 && current.menu2 == 3 && (old.menu1 == 0 || old.menu2 == 1));
+    return (current.menu1 == 1 && current.menu2 == 3 && old.menu1 == 0 && old.menu2 == 1);
 }
 
 isLoading
