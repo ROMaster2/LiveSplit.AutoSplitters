@@ -9,7 +9,7 @@ state("Game")
 
 init
 {
-	refreshRate = 30;
+//	refreshRate = 30;
     vars.ind = new byte[2] {136, 140};
     switch(modules.First().ModuleMemorySize) {
         case 4952064: //Origins
@@ -38,21 +38,21 @@ startup
 
 update
 {
-    vars.totalIGT = vars.storedIGT + vars.reloadedTime + current.igt;
-    if (old.igt > current.igt && current.igt > 0 && current.menu1 != 3)//reloaded
-        vars.reloadedTime += old.igt - current.igt;
-    if (current.igt == 0 && old.igt > 0 && current.menu1 != 3) {//Beat mission
-        vars.storedIGT += vars.reloadedTime + old.igt;
-        vars.reloadedTime = 0;
-    }
-    if (timer.CurrentPhase == TimerPhase.Running && vars.prevPhase == TimerPhase.NotRunning) {//New game
+    if (vars.prevPhase == TimerPhase.NotRunning && timer.CurrentPhase == TimerPhase.Running) {//New game
         vars.totalIGT = 0;
         vars.storedIGT = 0;
         vars.reloadedTime = 0;
     }
+    if (current.igt == 0 && old.igt > 0 && current.menu1 != 3) {//Beat mission
+        vars.storedIGT += vars.reloadedTime + old.igt;
+        vars.reloadedTime = 0;
+    }
+    if (old.igt > current.igt && current.igt > 0 && current.menu1 != 3)//reloaded
+        vars.reloadedTime += old.igt - current.igt;
+    vars.totalIGT = vars.storedIGT + vars.reloadedTime + current.igt;
     vars.prevPhase = timer.CurrentPhase;
     
-    vars.splitter = false;
+    vars.splitter = false; //For splitting, since these values aren't perfectly in sync
     if (current.menu1 == 1 && old.menu1 == 0)
         vars.menu1help = true;
     if (current.menu2 == 3 && old.menu1 == 1);
@@ -62,6 +62,8 @@ update
         vars.menu1help = false;
         vars.menu2help = false;
     }
+    if (current.menu1 == 1 && current.menu2 == 1) //Unset if died
+        vars.splitter = false;
 }
 
 start
