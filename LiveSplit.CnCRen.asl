@@ -55,7 +55,7 @@ update
     vars.splitter = false; //For splitting, since these values aren't perfectly in sync
     if (current.menu1 == 1 && old.menu1 == 0)
         vars.menu1help = true;
-    if (current.menu2 == 3 && old.menu1 == 1);
+    if (current.menu2 == 3 && old.menu1 == 1)
         vars.menu2help = true;
     if (vars.menu1help && vars.menu2help) {
         vars.splitter = true;
