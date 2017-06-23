@@ -1,10 +1,10 @@
-state("generals_origin")
+state("Generals_Origin")
 {
-    byte cursorControl : "generals_origin.exe", 0x56D380, 0xA7;
-    ushort victorySplash : "generals_origin.exe", 0x56D38C, 0xF;
-    byte menuTransistion : "generals_origin.exe", 0x56B9F0, 0x74, 0x58, 0x3F;
-    byte menuAssist : "generals_origin.exe", 0x56B9F0, 0x74, 0x58, 0x3E;
-    byte map: "generals_origin.exe", 0x53FB1C;
+    byte cursorControl : "Generals_Origin.exe", 0x56D380, 0xA7;
+    ushort victorySplash : "Generals_Origin.exe", 0x56D38C, 0xF;
+    byte menuTransistion : "Generals_Origin.exe", 0x56B9F0, 0x74, 0x58, 0x3F;
+    byte menuAssist : "Generals_Origin.exe", 0x56B9F0, 0x74, 0x58, 0x3E;
+    byte map: "Generals_Origin.exe", 0x53FB1C;
 }
 
 state("generals")
