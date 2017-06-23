@@ -18,7 +18,7 @@ state("generals")
 
 start
 {
-    return (current.victorySplash > 0 && old.victorySplash > 0 && current.menuTransistion == 250 && old.menuTransistion == 0 && current.menuAssist == 255 && old.menuAssist == 0); //trigger happy
+    return ((current.victorySplash > 0 && old.victorySplash > 0 && current.menuTransistion == 250 && old.menuTransistion == 0 && current.menuAssist == 255 && old.menuAssist == 0) || (current.cursorControl == 1 && old.cursorControl == 0)); //trigger happy
 }
 
 reset
