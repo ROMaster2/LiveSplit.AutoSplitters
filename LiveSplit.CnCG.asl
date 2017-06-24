@@ -9,7 +9,7 @@ state("Generals_Origin")
 
 start
 {
-    return ((current.victorySplash > 0 && old.victorySplash > 0 && current.menuTransistion == 250 && old.menuTransistion == 0 && current.menuAssist == 255 && old.menuAssist == 0) || (current.cursorControl == 0 && old.cursorControl == 1 && current.menuTransistion != 255)); //trigger happy
+    return ((current.victorySplash > 0 && old.victorySplash > 0 && current.menuTransistion == 250 && old.menuTransistion == 0 && current.menuAssist == 255 && old.menuAssist == 0) || (current.cursorControl == 1 && old.cursorControl == 0 && current.map > 1)); //trigger happy
 }
 
 reset
@@ -29,4 +29,10 @@ isLoading
         return true;
     if (current.victorySplash > 0 && old.victorySplash > 0 && current.menuTransistion == 200 && old.menuTransistion == 250 && current.menuAssist == 255 && old.menuAssist == 255)
         return true;
+}
+
+gameTime
+{
+    if (current.map == 1 && timer.CurrentTime.RealTime.Value.TotalMilliseconds < 500)
+        return TimeSpan.Zero;
 }
