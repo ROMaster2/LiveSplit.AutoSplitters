@@ -18,14 +18,14 @@ reset
 
 split
 {
-    return (current.victorySplash == 268 && old.victorySplash != 268);
+    return (current.victorySplash > 255 && old.victorySplash <= 255);
 }
 
 isLoading
 {
     if (current.cursorControl == 1 && old.cursorControl == 0)
         return false;
-    if (current.map == 1 || (current.victorySplash == 268 && old.victorySplash != 268))
+    if (current.map == 1 || (current.victorySplash > 255 && old.victorySplash <= 255))
         return true;
     if (current.victorySplash > 0 && old.victorySplash > 0 && current.menuTransistion == 200 && old.menuTransistion == 250 && current.menuAssist == 255 && old.menuAssist == 255)
         return true;
