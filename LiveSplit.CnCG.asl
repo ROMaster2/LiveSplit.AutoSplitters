@@ -12,10 +12,6 @@ start
     return ((current.victorySplash > 0 && old.victorySplash > 0 && current.menuTransistion == 250 && old.menuTransistion == 0 && current.menuAssist == 255 && old.menuAssist == 0) || (current.cursorControl == 1 && old.cursorControl == 0 && current.map > 1)); //trigger happy
 }
 
-reset
-{
-}
-
 split
 {
     return (current.victorySplash > 255 && old.victorySplash <= 255);
@@ -23,11 +19,11 @@ split
 
 isLoading
 {
-    if (current.cursorControl == 1 && old.cursorControl == 0)
-        return false;
-    if (current.map == 1 || (current.victorySplash > 255 && old.victorySplash <= 255))
+    if (current.victorySplash > 255)
         return true;
-    if (current.victorySplash > 0 && old.victorySplash > 0 && current.menuTransistion == 200 && old.menuTransistion == 250 && current.menuAssist == 255 && old.menuAssist == 255)
+    if (current.cursorControl == 1 && old.cursorControl == 0 && current.map > 1)
+        return false;
+    if (current.victorySplash > 0 && old.victorySplash > 0 && current.menuTransistion == 200 && old.menuTransistion == 250 && current.menuAssist == 255 && old.menuAssist == 255 && current.map == 1)
         return true;
 }
 
