@@ -24,7 +24,7 @@ state("generals")
 
 start
 {
-    return ((current.menuTransistion == 256 && old.menuTransistion == 1 && current.map == 1) || (current.cursorControl == 1 && old.cursorControl == 0)); //trigger happy
+    return ((current.menuTransistion == 256 && old.menuTransistion == 1 && current.map == 1) || (current.cursorControl == 1 && old.cursorControl == 0));
 }
 
 split
@@ -38,4 +38,10 @@ isLoading
         return true;
     if (current.cursorControl == 1 && old.cursorControl == 0)
         return false;
+}
+
+gameTime
+{
+    if (current.map == 1 && timer.CurrentTime.RealTime.Value.TotalMilliseconds < 500)
+        return TimeSpan.Zero;
 }
