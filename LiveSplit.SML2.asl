@@ -67,5 +67,5 @@ split
 
 gameTime
 {
-    return TimeSpan.FromMilliseconds((current.frameCounter - vars.gtStart) * 1000 / 60);
+    return TimeSpan.FromMilliseconds((current.frameCounter - vars.gtStart) * 1000 / 59.727500569606); // Might actually be 60. Sue me.
 }
