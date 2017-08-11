@@ -23,6 +23,18 @@ state("gambatte_qt_win32-r571")
     byte bossHealth : "gambatte_qt_win32-r571.exe", 0x552038, 0xC, 0x11E8, 0xFC5;
 }
 
+state("gambatte")
+{
+    byte levelIndex : "gambatte.exe", 0x552038, 0x5C, 0x508, 0x1276;
+    byte save1LevelCount : "gambatte.exe", 0x552038, 0x5C, 0x108, 0x42;
+    byte fsx : "gambatte.exe", 0x552038, 0x5C, 0x148;
+    byte fsy : "gambatte.exe", 0x552038, 0x5C, 0x15D;
+    ushort music1 : "gambatte.exe", 0x5520C4, 0x3DC, 0xDD8, 0x414;
+    ushort music2 : "gambatte.exe", 0x5520C4, 0x3DC, 0xDD8, 0x424;
+    uint frameCounter : "gambatte.exe", 0x552038, 0x88, 0xB8, 0x17C, 0x100;
+    byte bossHealth : "gambatte.exe", 0x552038, 0xC, 0x11E8, 0xFC5;
+}
+
 startup
 {
     settings.Add("bosssplit", false, "Split on entering boss area and each Wario phase.");
