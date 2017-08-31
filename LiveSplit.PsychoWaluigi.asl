@@ -2,16 +2,7 @@ state("stdrt")
 {
     string5 map : "stdrt.exe", 0x525B0, 0x10, 0x0;
     ushort igt : "MMFS2.dll", 0x46D88, 0x34;
-}
-
-init
-{
-    //vars.igtAll = 0;
-}
-
-update
-{
-    //if (current.igt 
+    uint irisHealth : "stdrt.exe", 0x52534, 0x10, 0x1EF0, 0x1138;
 }
 
 start
@@ -19,13 +10,10 @@ start
     return (current.map == "Intro" && old.map == "File ");
 }
 
-reset
-{
-}
-
 split
 {
-    return (current.map == "Coin " && old.map != "Coin ");
+    return (current.map == "Coin " && old.map != "Coin ") ||
+    (current.map == "The F" && current.irisHealth == 0 && old.irisHealth > 0 && old.irisHealth < 13); //Final Boss
 }
 
 isLoading
@@ -34,7 +22,7 @@ isLoading
 }
 
 gameTime {
-    if (timer.CurrentTime.RealTime.Value.TotalMilliseconds < 500)
+    if (timer.CurrentTime.RealTime.Value.TotalMilliseconds < 2000)
         return TimeSpan.Zero;
 }
 
