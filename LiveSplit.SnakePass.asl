@@ -13,3 +13,9 @@ isLoading
 {
     return current.igt <= old.igt;
 }
+
+gameTime
+{
+    if (timer.CurrentTime.RealTime.Value.TotalMilliseconds < 1000)
+        return TimeSpan.Zero;
+}
