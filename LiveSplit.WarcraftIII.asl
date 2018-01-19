@@ -67,7 +67,8 @@ start
 
 split
 {
-    return (current.victorySplash == "Victory!" && old.victorySplash != "Victory!");
+    return ((current.victorySplash == "Victory!" && old.victorySplash != "Victory!") ||
+			(current.status == 0 && old.status == 4 && (current.starter2 == 17 || current.starter2 == 18))); // May not be reliable.
 }
 
 isLoading
