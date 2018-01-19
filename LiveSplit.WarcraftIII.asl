@@ -1,4 +1,4 @@
-state("War3")
+state("Warcraft III")
 {
     uint igt : "Game.dll", 0xD30110;
     byte status : "Game.dll", 0xD0DEF8, 0x34, 0x10, 0x8, 0x338;
