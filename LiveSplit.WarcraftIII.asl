@@ -8,6 +8,16 @@ state("Warcraft III")
     string24 map : "Game.dll", 0xD3A536;
 }
 
+state("war3")
+{
+    uint igt : "Game.dll", 0xAB7E98;
+    byte status : "Game.dll", 0x563E8C, 0x340;
+    string8 victorySplash : "Storm.dll", 0x554F0, 0x220, 0x1E8, 0x0;
+//  string7 starter1 : "Game.dll", 0xCB1C94, 0x200, 0x1E8, 0x0;
+//  byte starter2 : "Game.dll", 0xD321AB;
+//  string24 map : "Game.dll", 0xD3A536;
+}
+
 startup
 {
     settings.Add("starttype", true, "On=Campaign mode; Off=Mission mode");
@@ -25,7 +35,7 @@ init
 
 update
 {
-    if (!current.map.Contains("Interlude"))//Don't include interludes
+//  if (!current.map.Contains("Interlude"))//Don't include interludes
         vars.currIGT = current.igt;
     if (vars.prevPhase == TimerPhase.NotRunning && timer.CurrentPhase == TimerPhase.Running) {//New game
         vars.currIGT = 0;
