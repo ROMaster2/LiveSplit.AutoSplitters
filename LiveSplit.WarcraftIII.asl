@@ -6,16 +6,18 @@ state("Warcraft III")
     string7 starter1 : "Game.dll", 0xCB1C94, 0x200, 0x1E8, 0x0;
     byte starter2 : "Game.dll", 0xD321AB;
     string24 map : "Game.dll", 0xD3A536;
+    string4 loadgame : "Game.dll", 0xCB1D2C, 0x2DC, 0x54, 0x0;
 }
 
 state("war3")
 {
     uint igt : "Game.dll", 0xAB7E98;
-    byte status : "Game.dll", 0x563E8C, 0x340;
+    byte status : "Storm.dll", 0x5571C, 0x0, 0x0, 0x98, 0x278;
     string8 victorySplash : "Storm.dll", 0x554F0, 0x220, 0x1E8, 0x0;
-//  string7 starter1 : "Game.dll", 0xCB1C94, 0x200, 0x1E8, 0x0;
-//  byte starter2 : "Game.dll", 0xD321AB;
-//  string24 map : "Game.dll", 0xD3A536;
+    string7 starter1 : "Game.dll", 0xAACABC, 0x2DC, 0x54, 0x0;
+    byte starter2 : "Game.dll", 0xAB55CB;
+    string24 map : "Game.dll", 0xAAE7CE;
+    string4 loadgame : "Game.dll", 0xAACABC, 0x2DC, 0x54, 0x0;
 }
 
 startup
@@ -35,7 +37,7 @@ init
 
 update
 {
-//  if (!current.map.Contains("Interlude"))//Don't include interludes
+    if (!current.map.Contains("Interlude"))//Don't include interludes
         vars.currIGT = current.igt;
     if (vars.prevPhase == TimerPhase.NotRunning && timer.CurrentPhase == TimerPhase.Running) {//New game
         vars.currIGT = 0;
@@ -77,8 +79,10 @@ start
 
 split
 {
-    return ((current.victorySplash == "Victory!" && old.victorySplash != "Victory!") ||
-			(current.status == 0 && old.status == 4 && (current.starter2 == 17 || current.starter2 == 18))); // May not be reliable.
+    return (
+			((current.victorySplash == "Victory!") || (current.status == 0 && old.status == 4 && current.loadgame != "Load"))
+			&& old.victorySplash != "Victory!" && !current.map.Contains("Interlude")
+			);
 }
 
 isLoading
