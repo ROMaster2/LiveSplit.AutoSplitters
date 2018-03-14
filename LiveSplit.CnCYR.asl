@@ -6,11 +6,37 @@ state("gamemd")
     byte missionIndex : "gamemd.exe", 0x68B230, 0x1260;
     byte menuTransition : "gamemd.exe", 0x71D37C, 0x6DC, 0x0, 0x0, 0x2E4;
     byte currentScreen : "gamemd.exe", 0x222704, 0x0;
+    uint igt : "gamemd.exe", 0x49F95C;
+}
+
+startup
+{
+    vars.prevPhase = null;
+    vars.totalIGT = 0;
+    vars.storedIGT = 0;
+    vars.reloadedTime = 0;
+}
+
+update
+{
+    if (vars.prevPhase == TimerPhase.NotRunning && timer.CurrentPhase == TimerPhase.Running) { // New game
+        vars.totalIGT = 0;
+        vars.storedIGT = 0;
+        vars.reloadedTime = 0;
+    }
+    if (current.igt == 0 && old.igt > 0) { // Beat mission
+        vars.storedIGT += vars.reloadedTime + old.igt;
+        vars.reloadedTime = 0;
+    }
+    if (old.igt > current.igt && current.igt > 0) // Reloaded
+        vars.reloadedTime += old.igt - current.igt;
+    vars.totalIGT = vars.storedIGT + vars.reloadedTime + current.igt;
+    vars.prevPhase = timer.CurrentPhase;
 }
 
 start
 {
-    return (current.menuTransition == 1 && old.menuTransition == 0 && current.currentScreen == 148);
+    return ((current.menuTransition == 1 && old.menuTransition == 0 && current.currentScreen == 148) || (current.igt > 0 && old.igt == 0));
 }
 
 reset
@@ -19,13 +45,23 @@ reset
 
 split
 {
-    return ((!(old.battleControl == 1 && old.menuControl == 1) && current.victorySplash == 0 && old.victorySplash == 255 && current.missionIndex == 55) || (current.currentScreen == 3 && old.currentScreen != 3));
+    return (!(old.battleControl == 1 && old.menuControl == 1) && current.victorySplash == 0 && old.victorySplash == 255);
 }
-
+/*
 isLoading
 {
     if ((current.victorySplash == 0 && old.victorySplash == 255) || current.currentScreen == 148)
         return true;
     if (current.victorySplash == 255 && current.battleControl == 0 && old.battleControl == 1)
         return false;
+}
+*/
+isLoading
+{
+    return true;
+}
+
+gameTime
+{
+    return TimeSpan.FromMilliseconds(vars.totalIGT * 32);
 }
