@@ -22,7 +22,7 @@ state("generals")
 startup
 {
     vars.prevPhase = null;
-	vars.lastCounter = 0;
+    vars.lastCounter = 0;
     vars.storedIGT = 0;
     vars.currentIGT = 0;
     vars.totalIGT = 0;
@@ -36,11 +36,11 @@ update
         vars.storedIGT = 0;
         vars.currentIGT = 0;
         vars.totalIGT = 0;
-		vars.divisor = 1f;
+        vars.divisor = 1f;
     }
     if (current.map != old.map || current.frameRate != old.frameRate) {
         vars.storedIGT += vars.currentIGT;
-		vars.lastCounter = current.frameCounter;
+        vars.lastCounter = current.frameCounter;
     }
     switch ((uint)current.frameRate) { // Framecounter/rate are weird
         case 20: vars.divisor = 980.105; break;
