@@ -29,13 +29,11 @@ state("generals")
 
 startup
 {
-//  refreshRate = 300;
     vars.prevPhase = null;
     vars.lastCounter = 0;
     vars.storedIGT = 0;
     vars.currentIGT = 0;
     vars.totalIGT = 0;
-    vars.divisor = 1f;
 }
 
 update
@@ -45,25 +43,15 @@ update
         vars.storedIGT = 0;
         vars.currentIGT = 0;
         vars.totalIGT = 0;
-        vars.divisor = 1f;
     }
     if (current.map != old.map || current.frameRate != old.frameRate) {
         vars.storedIGT += vars.currentIGT;
         vars.lastCounter = current.frameCounter;
     }
-    switch ((uint)current.frameRate) { // Framecounter/rate are weird
-        case 20: vars.divisor = 980.105; break;
-        case 23: vars.divisor = 966.25 ; break;
-        case 24: vars.divisor = 960    ; break;
-        case 25: vars.divisor = 975    ; break;
-        case 30: vars.divisor = 960    ; break;
-//      default: vars.divisor = (1000 - current.frameRate); break;
-        default: vars.divisor = 10; break; // to show there's a different value
-    }
     if (current.map == 1) {
         vars.currentIGT = 0;
     } else {
-        vars.currentIGT  = (current.frameCounter - vars.lastCounter) * vars.divisor / current.frameRate;
+        vars.currentIGT  = (current.frameCounter - vars.lastCounter) * Math.Floor((1000f / current.frameRate) - 1f);
     }
     vars.totalIGT = vars.currentIGT + vars.storedIGT;
     vars.prevPhase = timer.CurrentPhase;
