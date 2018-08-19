@@ -1,16 +1,66 @@
-state("Game")
+state("game")
 {
-    byte battleControl : "Game.exe", 0x132C7C, 0x0;
-    byte menuControl : "Game.exe", 0x132C7C, 0x1;
-    byte victorySplash : "Game.exe", 0x43996C, 0xA4;
-    byte missionIndex : "Game.exe", 0x63D290, 0x83F;
-    byte menuTransition : "Game.exe", 0x6D081C, 0x6E4, 0x54;
-    byte currentScreen : "Game.exe", 0x1FF6C4, 0x0;
+    byte battleControl : "game.exe", 0x132C7C, 0x0;
+    byte menuControl : "game.exe", 0x132C7C, 0x1;
+    byte victorySplash : "game.exe", 0x43996C, 0xA4;
+    byte missionIndex : "game.exe", 0x63D290, 0x83F;
+    byte menuTransition : "game.exe", 0x6D081C, 0x6E4, 0x314;
+    byte currentScreen : "game.exe", 0x1FF6C4, 0x0;
+    uint igt : "game.exe", 0x640D2C;
+}
+
+startup // Wish it didn't need so many...
+{
+    vars.prevPhase = null;
+    vars.totalIGT = 0;
+    vars.storedIGT = 0;
+    vars.reloadedTime = 0;
+	vars.clampIGT = 0;
+	vars.clampOldIGT = 0;
+	vars.currentIGT = 0;
+	vars.oldIGT = 0;
+	vars.toggle = false;
+}
+
+update
+{
+    if (vars.prevPhase == TimerPhase.NotRunning && timer.CurrentPhase == TimerPhase.Running) { // New game
+        vars.totalIGT = 0;
+        vars.storedIGT = 0;
+        vars.reloadedTime = 0;
+ 		vars.clampIGT = 2147483647;
+		vars.clampOldIGT = 0;
+		vars.currentIGT = 0;
+		vars.oldIGT = 0;
+		vars.toggle = false;
+   }
+	if (current.victorySplash == 0 && old.victorySplash == 255) {
+		vars.clampIGT = current.igt;
+		vars.clampOldIGT = current.igt;
+		vars.toggle = true;
+	}
+	if (vars.toggle && current.igt == 0) {
+		vars.clampIGT = 2147483647;
+	}
+	if (vars.toggle && old.igt == 0) {
+		vars.clampOldIGT = 2147483647;
+		vars.toggle = false;
+	}
+	vars.currentIGT = Math.Min(vars.clampIGT, current.igt);
+	vars.oldIGT = Math.Min(vars.clampOldIGT, old.igt);
+    if (current.igt == 0 && old.igt > 0) { // Beat mission
+        vars.storedIGT += vars.reloadedTime + vars.oldIGT;
+        vars.reloadedTime = 0;
+    }
+    if (old.igt > current.igt && current.igt > 0) // Reloaded
+        vars.reloadedTime += vars.oldIGT - vars.currentIGT;
+    vars.totalIGT = vars.storedIGT + vars.reloadedTime + vars.currentIGT;
+    vars.prevPhase = timer.CurrentPhase;
 }
 
 start
 {
-    return (current.menuTransition == 1 && old.menuTransition == 0 && current.currentScreen == 148);
+    return ((current.menuTransition == 1 && old.menuTransition == 0 && current.currentScreen == 148) || (current.igt > 0 && old.igt == 0));
 }
 
 reset
@@ -19,13 +69,23 @@ reset
 
 split
 {
-    return ((!(old.battleControl == 1 && old.menuControl == 1) && current.victorySplash == 0 && old.victorySplash == 255 && current.missionIndex == 12849) || (current.currentScreen == 3 && old.currentScreen != 3));
+    return (!(old.battleControl == 1 && old.menuControl == 1) && current.victorySplash == 0 && old.victorySplash == 255);
 }
-
+/*
 isLoading
 {
     if ((current.victorySplash == 0 && old.victorySplash == 255) || current.currentScreen == 148)
         return true;
     if (current.victorySplash == 255 && current.battleControl == 0 && old.battleControl == 1)
         return false;
+}
+*/
+isLoading
+{
+    return true;
+}
+
+gameTime
+{
+    return TimeSpan.FromMilliseconds(vars.totalIGT * 32);
 }
