@@ -1,10 +1,7 @@
 state("gamemd")
 {
-    byte battleControl : "gamemd.exe", 0x14F9AC, 0x0;
-    byte menuControl : "gamemd.exe", 0x14F9AC, 0x1;
     byte victorySplash : "gamemd.exe", 0x487324, 0xA4;
     uint igt : "gamemd.exe", 0x49F95C;
-//  byte reseter : "gamemd.exe", 0x68B230, 0x61C;
 }
 
 startup
@@ -39,7 +36,7 @@ start
 
 split
 {
-    return (!(old.battleControl == 1 && old.menuControl == 1) && current.victorySplash == 0 && old.victorySplash == 255);
+    return (current.victorySplash == 0 && old.victorySplash == 255);
 }
 
 isLoading
